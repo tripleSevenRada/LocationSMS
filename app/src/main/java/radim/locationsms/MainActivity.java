@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     private LinearLayout backdropLL;
     private TextView statusTV,lastStoredTV,refreshTV;
-    //private Button sendLastStoredB,sendCurrentB,storeCurrentB,settingsB;
     private String locationStatus;
     private Location current;
     private float lon,lat;
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     private String dateS;
     private static final String TAG = "Location SMS: ";
     private SharedPreferences myPreferences = null;
-
-    //private float mockAccuracy=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +53,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         public void run() {
             long interval = 600;
             try {
-
-                //mock testing
-                //mockAccuracy-=20;
-                //if(mockAccuracy<=0)mockAccuracy=1000;
-                //mock testing
-
                 updateStatus();//this function can change value interval based on accuracy
                 roller++;
                 if(roller == 4) roller = 0;
-                //System.out.println("ROLLER "+roller);
             } finally {
-                // 100% guarantee that this always happens
                 handler.postDelayed(statusChecker, interval);
             }
         }
@@ -154,14 +143,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         backdropLL = (LinearLayout) findViewById(R.id.parent_layout);
         statusTV = (TextView) findViewById(R.id.status_TV);
         refreshTV = (TextView) findViewById(R.id.refreshTV);
-
-        /*
-        sendLastStoredB = (Button) findViewById(R.id.last_storedB);
-        sendCurrentB = (Button) findViewById(R.id.currentB);
-        storeCurrentB = (Button) findViewById(R.id.storeB);
-        settingsB = (Button) findViewById(R.id.settingsB);
-        */
-
         lastStoredTV = (TextView) findViewById(R.id.last_storedTV);
         myPreferences = getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         setStoredTV();
@@ -251,11 +232,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         float accuracy;
         String provider;
         if(current != null) {
-
-            //mock testing
-            //current.setAccuracy(mockAccuracy);
-            //mock testing
-
             accuracy = current.getAccuracy();
             provider = current.getProvider();
             concatenateStatus();
@@ -269,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                             .getString(R.string.accur)).append(": ").append(accuracy).append(" [m].").toString();
             refreshTV.setText(formProgress());
             statusTV.setText(locationStatus);
-            //System.out.println("UPDATE STATUS LOCATION != NULL");
         }else {
             concatenateStatus();
             locationStatus+=", "+getResources().getString(R.string.noLoc);

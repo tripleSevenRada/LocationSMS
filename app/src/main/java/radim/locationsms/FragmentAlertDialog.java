@@ -5,26 +5,24 @@ package radim.locationsms;
  * Created by radim on 17.9.16.
  */
 
-        import android.app.AlertDialog;
-        import android.app.Dialog;
-        import android.app.DialogFragment;
-        import android.content.DialogInterface;
-        import android.os.Bundle;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.os.Bundle;
 
 public class FragmentAlertDialog extends DialogFragment {
 
-    public FragmentAlertDialog (){}//default constructor only
+    public FragmentAlertDialog (){}
 
     private String title="title";
     private String message="warning message";
     private String ok = "OK";
-    private Bundle retrieved;
-
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        retrieved = this.getArguments();
+        Bundle retrieved = this.getArguments();
 
         if(retrieved != null){
 
@@ -33,7 +31,6 @@ public class FragmentAlertDialog extends DialogFragment {
             ok = retrieved.getString("ok");
 
         }
-
 
         return new AlertDialog.Builder(getActivity())
 
@@ -46,9 +43,7 @@ public class FragmentAlertDialog extends DialogFragment {
                 // positive button
                 .setPositiveButton(ok, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
 
                     // negative button
 
