@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("ONCREATE");
     }
     private void initRepetitiveTask(){
         handler = new Handler();
@@ -75,13 +74,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         super.onStart();
         initMembers();
         initLocationService();
-        System.out.println("ONSTART");
     }
 
     @Override
     protected void onRestart(){
         super.onRestart();
-        System.out.println("ONRESTART");
     }
 
     @Override
@@ -90,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         initMembers();
         initLocationService();
         initRepetitiveTask();
-        System.out.println("ONRESUME");
     }
 
     @Override
@@ -111,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             String title_gen = getString(R.string.warning_title_general);
             String message_gen = getString(R.string.warning_message_general)+"removeUpdates";
             handleProblem(title_gen, message_gen);
-            Log.i(TAG,"CATCH GE omPause ");
+            Log.i(TAG,"CATCH GE onPause ");
 
         }
 
@@ -128,14 +124,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         lastStoredTV=null;
         handler=null;
 
-        System.out.println("ONPAUSE");
-
     }
 
     @Override
     protected void onStop(){
         super.onStop();
-        System.out.println("ONSTOP");
     }
 
     private void initMembers(){
@@ -190,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                 handleProblem(title_gen, message_gen);
                 Log.i(TAG,"CATCH GE init");
             }
-        System.out.println("INIT LOCATION SERVICE DONE");
     }
 
     private void toastThis(String message){
