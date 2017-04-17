@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">LocationSMS</string>
+    <string name="sett">Go to Location settings -></string>
+    <string name="lastStored">Stored:</string>
+    <string name="storeCurrent">Store your current Location</string>
+    <string name="sendCurrent">Send your current Location -></string>
+    <string name="sendLastStored">Send Stored Location -></string>
+    <string name="status">STATUS:</string>
+    <string name="GPSEnabled">Position by GPS: enabled</string>
+    <string name="GPSDisabled">Position by GPS: disabled</string>
+    <string name="NETEnabled">Position by NETWORK provider: enabled</string>
+    <string name="NETDisabled">Position by NETWORK provider: disabled</string>
+    <string name="SecExc">You may need to guarantee some permision to this App in Settings.</string>
+    <string name="accur">Accuracy</string>
+    <string name="noLoc">No Location available</string>
+    <string name="noCurrLoc">No current Location available</string>
+    <string name="prov">Provider used:</string>
+    <string name="provDis">Provider disabled</string>
+    <string name="provEnab">Provider enabled</string>
+    <string name="nothingToStore">No Location available to store</string>
+    <string name="nothingStored">No Location stored</string>
+    <string name="stored">STORED LOCATION:</string>
+    <string name="noSMS">No SMS service found!</string>
+    <string name="rot">Screen rotation restarts search.</string>
+
+    <string name="warning_title">Permissions problem</string>
+    <string name="warning_message">You may want to grant this App permissions in settings-app-LocationSMS</string>
+
+    <string name="warning_title_general">Some problem</string>
+    <string name="warning_message_general">problem: </string>
+
+    <string name="ok">OK</string>
+
+
+</resources>
