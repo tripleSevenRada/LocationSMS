@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements LocationListener{
@@ -43,10 +42,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    
     private void initRepetitiveTask(){
         handler = new Handler();
         startRepeatingTask();
     }
+    
     Runnable statusChecker = new Runnable() {
         @Override
         public void run() {
@@ -95,25 +96,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         try {
             lm.removeUpdates(this);
         }catch(SecurityException se){
-
             String title = getString(R.string.warning_title);
             String message = getString(R.string.warning_message);
 
             handleProblem(title, message);
             Log.i(TAG,"CATCH SE onPause");
-
         }catch(Exception e){
-
             String title_gen = getString(R.string.warning_title_general);
             String message_gen = getString(R.string.warning_message_general)+"removeUpdates";
             handleProblem(title_gen, message_gen);
             Log.i(TAG,"CATCH GE onPause ");
-
         }
 
         stopRepeatingTask();
-
-        //
 
         lm=null;
         current=null;
@@ -167,16 +162,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                 if(enabledGPS)lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 128, 1, this);
                 if(enabledNET)lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 255, 1, this);
             }catch(SecurityException se){
-
                 String title = getString(R.string.warning_title);
                 String message = getString(R.string.warning_message);
 
                 handleProblem(title, message);
                 Log.i(TAG,"CATCH SE init");
-
             }
             catch(Exception e){
-
                 String title_gen = getString(R.string.warning_title_general);
                 String message_gen = getString(R.string.warning_message_general)+"initLocationService";
 
@@ -269,8 +261,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         Intent doSettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         startActivity(doSettings);
     }
-    /*
-     */
+
     public void sendLastStored(View v){
         if(!myPreferences.contains("date")){
             toastThis(getResources().getString(R.string.nothingStored));
@@ -278,8 +269,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             sendSMS(composeLink(String.valueOf(myPreferences.getFloat("lat",0)),String.valueOf(myPreferences.getFloat("lon",0))));
         }
     }
-    /*
-    */
+
     public void sendCurrent(View v){
         if(current == null){
             toastThis(getResources().getString(R.string.noCurrLoc));
@@ -287,8 +277,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             sendSMS(composeLink(String.valueOf(current.getLatitude()),String.valueOf(current.getLongitude())));
         }
     }
-    /*
-    */
+
     private void sendSMS(String message) {
         try {
             Uri destination = Uri.parse("smsto:");
@@ -303,13 +292,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             handleProblem(title_gen, message_gen);
         }
     }
-    /*
-    */
+
     private String composeLink(String lat,String lon){
         return "https://maps.google.com/?q="+lat+","+lon;
     }
-    /*
-     */
+
     public void storeCurrent(View v){
         SharedPreferences.Editor myEditor;
         if(current == null) {
@@ -342,23 +329,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         return Color.rgb(red,green,0);
     }
 
-    /**
-     *
-     *
-     *
-     */
     private void handleProblem(String title, String message){
 
         String ok = getString(R.string.ok);
 
         Bundle handedIn = new Bundle();
-
         handedIn.putString("title",title);
         handedIn.putString("message", message);
         handedIn.putString("ok", ok);
 
         FragmentManager manager = getFragmentManager();
-
         Fragment frag = manager.findFragmentByTag("fragment_warning");
         if (frag != null) {
           manager.beginTransaction().remove(frag).commit();
