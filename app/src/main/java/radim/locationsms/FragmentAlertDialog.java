@@ -1,10 +1,5 @@
 package radim.locationsms;
 
-
-/**
- * Created by radim on 17.9.16.
- */
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
